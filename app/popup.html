@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Upsellit Tracker</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.4.0.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.css">
+    <link href="/styles/styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+  <div id="widthWrap">
+    <div id="navbar">
+      <p>UpSellit</p>
+      <span id="demo-menu-lower-right" class="menu"><i class="material-icons">more_vert</i></span>
+      <a href="#" class="add-scrape hidden" title="Add product property"><i class="material-icons">add</i></a>
+    </div>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="demo-menu-lower-right">
+      <li class="mdl-menu__item rebuilder-btn">Cart Rebuilder</li>
+      <li class="mdl-menu__item scraper-btn">Cart Scraper</li>
+    </ul>
+    <div class="loader">
+        <div id="progressLoader" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+    </div>
+    <div class="campaign-details hidden"></div>
+    <div class="scrape-info hidden">
+      <form action="#" class="add-scrape-form hidden" id="add-product-form">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="add-product-attribute">
+          <label class="mdl-textfield__label" for="add-product-attribute">Set Product Attribute</label>
+        </div>
+      </form>
+      <div class="cart-row">
+          <span class="mdl-chip mdl-chip--contact">
+              <a href="#" class="mdl-chip__action hidden"><i class="material-icons">done</i></a>
+              <span class="mdl-chip__text">Cart row</span>
+          </span>
+      </div>
+      <div class="product-image">
+          <span class="mdl-chip mdl-chip--contact">
+              <a href="#" class="mdl-chip__action hidden"><i class="material-icons">done</i></a>
+              <span class="mdl-chip__text">Image</span>
+          </span>
+      </div>
+      <div class="product-price">
+          <span class="mdl-chip mdl-chip--contact">
+              <a href="#" class="mdl-chip__action hidden"><i class="material-icons">done</i></a>
+              <span class="mdl-chip__text">Price</span>
+          </span>
+      </div>
+      <div class="product-name">
+          <span class="mdl-chip mdl-chip--contact">
+              <a href="#" class="mdl-chip__action hidden"><i class="material-icons">done</i></a>
+              <span class="mdl-chip__text">Name</span>
+          </span>
+      </div>
+      <div class="button-row">
+        <div class="finish-scrape">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+            Finish
+          </button>
+        </div>
+        <div class="cancel-scrape">
+          <button class="mdl-button mdl-js-button mdl-button--raised">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="scrape-code hidden">
+      <form action="#">
+        <div class="textarea"></div>
+      </form>
+      <div class="return-scrape">
+          <button class="mdl-button mdl-js-button mdl-button--raised">
+            Cancel
+          </button>
+      </div>
+    </div>
+    <div class="col-right">
+      <div class="card warning hidden">
+        <i class="material-icons circle">report_problem</i>
+        No view data detected
+      </div>
+      <div class="card hidden tag">
+        <i class="material-icons circle">local_offer</i>
+        Tag Found
+      </div>
+      <div class="card hidden pixel">
+        <i class="material-icons circle">local_atm</i>
+        Pixel Found
+        <div class="button">&#x2716;</div>
+        <div class="pixel-details hidden">
+          <hr/>
+          <p class="dark">
+            Order ID: <span class="order-id"></span>
+          </p>
+          <p class="dark">
+            Order Amount: <span class="order-amt"></span>
+          </p>
+        </div>
+      </div>
+      <div class="card hidden view">
+        <i class="material-icons circle">picture_in_picture</i>
+        View File Found
+        <div class="button">&#x2716;</div>
+        <div class="view-details hidden">
+          <hr/>
+          <p class="dark">
+            Site ID: <span class="site-id"></span>
+          </p>
+          <p class="dark">
+            Coupon: <span class="coupon"></span>
+          </p>
+          <p class="dark">
+            Link: <span class="tooltip">hover <span class="link tooltiptext"></span></span>
+          </p>
+          <p class="dark">
+            Assoc. Email: <span class="assoc-email"></span>
+          </p>
+          <p class="dark">
+            Images: <span class="images"></span>
+          </p>
+        </div>
+      </div>
+      <div class="card hidden monitor">
+        <i class="material-icons circle">local_post_office</i>
+        Monitor Found
+      </div>
+      <div class="card hidden test">
+        <i class="material-icons circle">assignment</i>
+        Unit Tests Found
+        <div class="button">&#x2716;</div>
+        <div class="test-details hidden">
+            <div id="unit-test-filters">
+              <label for="dev-unit-tests">Dev</label>
+              <input type="radio" name="filter" id="dev" value="Dev" />
+              <label for="sales-unit-tests">Sales</label>
+              <input type="radio" name="filter" id="sales" value="Sales" />
+            </div>
+            <div id="qunit"></div>
+            <div id="qunit-fixture"></div>     
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="popup.js"></script>
+    <script defer src="scripts/material.min.js"></script>
+    <script src="https://code.jquery.com/qunit/qunit-2.4.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/javascript/javascript.js"></script>
+  </body>
+</html>

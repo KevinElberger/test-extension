@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Upsellit Internal Tool",
+  "description": "This extension shows flags that are being set on page load as well as specific cookies and web requests",
+  "version": "1.9.1",
+  "browser_action": {
+    "default_icon": "images/icon-19.png",
+    "default_popup": "popup.html"
+  },
+  "default_locale": "en",
+  "background": {
+  	"persistent": true,
+  	"scripts": ["scripts/background.js"]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://*.upsellit.com https://*.cloudflare.com https://*.jquery.com; object-src 'self'",
+  "permissions": [
+  	"tabs",
+    "cookies",
+    "storage",
+    "activeTab",
+    "webRequest",
+    "webNavigation",
+    "notifications",
+    "<all_urls>",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [{
+  	"matches": ["http://*/*","https://*/*"],
+  	"js": ["scripts/contentscript.js","scripts/material.min.js", "scripts/dialog.js"],
+  	"all_frames": false,
+  	"run_at": "document_end"
+  }],
+  "web_accessible_resources": ["scripts/usi_script.js"]
+}
